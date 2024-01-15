@@ -1,0 +1,88 @@
+{
+  "name": "react-action-modal-hook",
+  "version": "1.0.0-beta",
+  "author": "Han Huang",
+  "main": "dist/cjs/index.js",
+  "module": "dist/index.js",
+  "tags": [
+    "react",
+    "hook",
+    "modal",
+    "dialog"
+  ],
+  "keywords": [
+    "react",
+    "modal",
+    "dialog",
+    "typescript",
+    "hook",
+    "useModal"
+  ],
+  "packageManager": "yarn@4.0.1",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.23.4",
+    "@babel/core": "^7.23.7",
+    "@babel/preset-env": "^7.23.7",
+    "@babel/preset-react": "^7.23.3",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.5",
+    "@storybook/addon-essentials": "^7.6.7",
+    "@storybook/addon-interactions": "^7.6.7",
+    "@storybook/addon-links": "^7.6.7",
+    "@storybook/addon-onboarding": "^1.0.10",
+    "@storybook/blocks": "^7.6.7",
+    "@storybook/react": "^7.6.7",
+    "@storybook/react-webpack5": "^7.6.7",
+    "@storybook/test": "^7.6.7",
+    "@types/babel__core": "^7",
+    "@types/babel__preset-env": "^7",
+    "@types/eslint": "^8",
+    "@types/node": "^20.10.7",
+    "@types/react": "^18.2.47",
+    "@types/react-dom": "^18",
+    "@types/rollup-plugin-peer-deps-external": "^2",
+    "@typescript-eslint/eslint-plugin": "^6.18.0",
+    "@typescript-eslint/parser": "^6.18.0",
+    "autoprefixer": "^10.4.16",
+    "clsx": "^2.1.0",
+    "cssnano": "^6.0.3",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-typescript-sort-keys": "^3.1.0",
+    "postcss": "^8.4.33",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "rollup": "^4.9.4",
+    "rollup-plugin-copy": "^3.5.0",
+    "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-dts": "^6.1.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2",
+    "storybook": "^7.6.7",
+    "typescript": "^5.3.3"
+  },
+  "peerDependencies": {
+    "react": "^16 || ^17 || ^18",
+    "react-dom": "^16 || ^17 || ^18"
+  },
+  "files": [
+    "package.json",
+    "README.md",
+    "LICENSE",
+    "types",
+    "dist"
+  ],
+  "volta": {
+    "node": "20.10.0",
+    "yarn": "4.0.2"
+  },
+  "scripts": {
+    "build": "rollup -c --bundleConfigAsCjs",
+    "storybook": "storybook dev -p 6006"
+  }
+}

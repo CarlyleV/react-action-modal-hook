@@ -1,0 +1,16 @@
+.common-button {
+  padding-block: 4px;
+  padding-inline: 16px;
+  font-size: 1.4rem;
+  color: #fff;
+  cursor: pointer;
+  background-color: hsl(212 100% 47%);
+  border-radius: 12px;
+  opacity: 1;
+  transition: opacity 200ms;
+  border: 0;
+}
+
+.common-button:hover {
+  opacity: 0.8;
+}
