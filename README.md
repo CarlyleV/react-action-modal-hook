@@ -1,14 +1,14 @@
 # react-action-modal-hook
 
-[日本語](/docs/README.ja.md)
-[简体中文](/docs/README.sc.md)
-[繁體中文](/docs/README.tc.md)
-
 ## NOTE
 
 A minimalist React Modal Hook using the dialog tag.
 
 Feel free to provide various suggestions within the issue.
+
+[日本語](https://github.com/CarlyleV/react-action-modal-hook/blob/main/docs/README.ja.md)
+[简体中文](https://github.com/CarlyleV/react-action-modal-hook/blob/main/docs/README.sc.md)
+[繁體中文](https://github.com/CarlyleV/react-action-modal-hook/blob/main/docs/README.tc.md)
 
 ## Usage
 
