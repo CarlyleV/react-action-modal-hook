@@ -1,5 +1,5 @@
 import React, { Dispatch, FC, ReactNode, SetStateAction } from 'react';
-import { CloseDelay, ModalProviderConfig, UseModalEventHandler } from '../../types';
+import { ModalCloseDelay, ModalProviderConfig, OnModalClose } from '../../types';
 /**
  * @typedef {object} ModalProviderProps - Properties for the ModalProvider component
  * @property {React.ReactNode} children - Content inside the modal
@@ -16,7 +16,7 @@ type ModalContextProps = {
     modalKey: string;
     open: Open;
 } | null;
-type Open = (dispatch: Dispatch<SetStateAction<boolean>>, closeDelay?: CloseDelay, onClose?: UseModalEventHandler, disableEsc?: boolean, unlockBodyScroll?: boolean) => void;
+type Open = (dispatch: Dispatch<SetStateAction<boolean>>, modalCloseDelay?: ModalCloseDelay, onModalClose?: OnModalClose, disableEsc?: boolean, unlockBodyScroll?: boolean) => void;
 export declare const ModalContext: React.Context<ModalContextProps>;
 /**
  * @function ModalProvider

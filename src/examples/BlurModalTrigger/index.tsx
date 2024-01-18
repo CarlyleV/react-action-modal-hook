@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { UseModalEventHandler } from '../../types';
+import { OnModalClose } from '../../types';
 import { useModal } from '../../useModal';
 import { Button } from '../Button';
 import { BlurModal } from '../modalTemplates/BlurModal';
@@ -15,7 +15,7 @@ export const BlurModalTrigger: FC<Props> = ({
 }) => {
   const [isClosing, setIsClosing] = useState<boolean>(false);
 
-  const onClose: UseModalEventHandler = () => {
+  const onModalClose: OnModalClose = () => {
     console.log('Blur Modal Start Closing');
 
     setIsClosing(true);
@@ -25,13 +25,13 @@ export const BlurModalTrigger: FC<Props> = ({
     };
   };
 
-  const closeDelay = () => {
+  const modalCloseDelay = () => {
     return 200;
   };
 
   const [Modal, openModal, closeModal] = useModal(BlurModal, {
-    closeDelay,
-    onClose,
+    modalCloseDelay,
+    onModalClose,
     disableEsc,
     unlockBodyScroll,
   });

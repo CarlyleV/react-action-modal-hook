@@ -20,7 +20,7 @@ export const BlurModalTrigger: FC<Props> = ({
 }) => {
   const [isClosing, setIsClosing] = useState < boolean > false;
 
-  const onClose: UseModalEventHandler = () => {
+  const onModalClose: OnModalClose = () => {
     // Blur Modal Start Closing
     setIsClosing(true);
     return () => {
@@ -29,13 +29,13 @@ export const BlurModalTrigger: FC<Props> = ({
     };
   };
 
-  const closeDelay = () => {
+  const modalCloseDelay = () => {
     return 200;
   };
 
   const [Modal, openModal, closeModal] = useModal(BlurModal, {
-    closeDelay,
-    onClose,
+    modalCloseDelay,
+    onModalClose,
     disableEsc,
     unlockBodyScroll,
   });
@@ -69,27 +69,27 @@ yarn add react-action-modal-hook
 [ModalComponent, openModal, closeModal, isModalOpen, dialogElement] = useModal<ModalTemplateProps>(
   ModalTemplate,
   {
-    closeDelay,
-    onClose,
+    modalCloseDelay,
+    onModalClose,
     disableEsc,
     unlockBodyScroll,
   },
 );
 ```
 
-|                      | Type                                      | Description                                                                                                                                                   | Required |
-| :------------------- | :---------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------- |
-| `ModalComponent`     | React.FC                                  | 登録されたモーダルテンプレートのコンポーネント                                                                                                                |          |
-| `openModal`          | () => void                                | モーダルを開く                                                                                                                                                |          |
-| `closeModal`         | () => void                                | モーダルを閉じる                                                                                                                                              |          |
-| `isModalOpen`        | boolean                                   | モーダルの開閉状態                                                                                                                                            |          |
-| `dialogElement`      | HTMLDialogElement                         | モーダルをラップする Dialog 要素                                                                                                                              |          |
-| `ModalTemplateProps` | object type                               | 登録するモーダルテンプレートの Props                                                                                                                          |          |
-| `ModalTemplate`      | React.FC                                  | 登録するモーダルのテンプレート                                                                                                                                | ⚪︎      |
-| `closeDelay`         | () => number                              | `closeModal`の実行開始から、モーダルを閉じるまでの遅延ミリ秒数（ms）<br/>default: `() => 0` <br/> ※アニメーション用                                           |          |
-| `onClose`            | (HTMLDialogElement) => void \| () => void | モーダルを閉じる時に実行される。<br/>`closeModal`が実行されたら、`onClose`が実行されます。`onClose`の戻り値となる関数は、モーダルが閉じられたら、実行される。 |          |
-| `disableEsc`         | boolean                                   | `Esc`でモーダルを閉じられないようにする<br/>default: `false`                                                                                                  |          |
-| `unlockBodyScroll`   | boolean                                   | モーダルが開かれた時、Body のスクロールをロックしないようにする<br/>default: `false`                                                                          |          |
+|                      | Type                                      | Description                                                                                                                                                             | Required |
+| :------------------- | :---------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
+| `ModalComponent`     | React.FC                                  | 登録されたモーダルテンプレートのコンポーネント                                                                                                                          |          |
+| `openModal`          | () => void                                | モーダルを開く                                                                                                                                                          |          |
+| `closeModal`         | () => void                                | モーダルを閉じる                                                                                                                                                        |          |
+| `isModalOpen`        | boolean                                   | モーダルの開閉状態                                                                                                                                                      |          |
+| `dialogElement`      | HTMLDialogElement                         | モーダルをラップする Dialog 要素                                                                                                                                        |          |
+| `ModalTemplateProps` | object type                               | 登録するモーダルテンプレートの Props                                                                                                                                    |          |
+| `ModalTemplate`      | React.FC                                  | 登録するモーダルのテンプレート                                                                                                                                          | ⚪︎      |
+| `modalCloseDelay`    | () => number                              | `closeModal`の実行開始から、モーダルを閉じるまでの遅延ミリ秒数（ms）<br/>default: `() => 0` <br/> ※アニメーション用                                                     |          |
+| `onModalClose`       | (HTMLDialogElement) => void \| () => void | モーダルを閉じる時に実行される。<br/>`closeModal`が実行されたら、`onModalClose`が実行されます。`onModalClose`の戻り値となる関数は、モーダルが閉じられたら、実行される。 |          |
+| `disableEsc`         | boolean                                   | `Esc`でモーダルを閉じられないようにする<br/>default: `false`                                                                                                            |          |
+| `unlockBodyScroll`   | boolean                                   | モーダルが開かれた時、Body のスクロールをロックしないようにする<br/>default: `false`                                                                                    |          |
 
 ## Styles
 
@@ -173,7 +173,7 @@ export const BlurModalTrigger: FC<Props> = ({
 }) => {
   const [isClosing, setIsClosing] = useState < boolean > false;
 
-  const onClose: UseModalEventHandler = () => {
+  const onModalClose: OnModalClose = () => {
     // Blur Modal Start Closing
     setIsClosing(true);
     return () => {
@@ -182,13 +182,13 @@ export const BlurModalTrigger: FC<Props> = ({
     };
   };
 
-  const closeDelay = () => {
+  const modalCloseDelay = () => {
     return 200;
   };
 
   const [Modal, openModal, closeModal] = useModal(BlurModal, {
-    closeDelay,
-    onClose,
+    modalCloseDelay,
+    onModalClose,
     disableEsc,
     unlockBodyScroll,
   });

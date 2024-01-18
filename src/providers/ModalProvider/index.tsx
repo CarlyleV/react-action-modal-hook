@@ -13,9 +13,9 @@ import React, {
   useRef,
 } from 'react';
 import {
-  CloseDelay,
+  ModalCloseDelay,
   ModalProviderConfig,
-  UseModalEventHandler,
+  OnModalClose,
 } from '../../types';
 
 /**
@@ -38,25 +38,25 @@ type ModalContextProps = {
 
 type Open = (
   dispatch: Dispatch<SetStateAction<boolean>>,
-  closeDelay?: CloseDelay,
-  onClose?: UseModalEventHandler,
+  modalCloseDelay?: ModalCloseDelay,
+  onModalClose?: OnModalClose,
   disableEsc?: boolean,
   unlockBodyScroll?: boolean,
 ) => void;
 
 type ModalRef = {
-  closeDelay: () => number;
+  modalCloseDelay: () => number;
   closeTimer: NodeJS.Timeout | undefined;
   isClosing: boolean;
   isEscDisabled: boolean;
-  onCloseStart: UseModalEventHandler | undefined;
-  onCloseEnd: ReturnType<UseModalEventHandler>;
+  onCloseStart: OnModalClose | undefined;
+  onCloseEnd: ReturnType<OnModalClose>;
 };
 
 const DEFAULT_MODAL_REF: ModalRef = {
   isEscDisabled: false,
   closeTimer: undefined,
-  closeDelay: () => 0,
+  modalCloseDelay: () => 0,
   isClosing: false,
   onCloseStart: undefined,
   onCloseEnd: undefined,
@@ -96,7 +96,7 @@ export const ModalProvider: FC<ModalProviderProps> = ({
 
   const open: Open = (
     dispatch,
-    closeDelay = DEFAULT_MODAL_REF.closeDelay,
+    modalCloseDelay = DEFAULT_MODAL_REF.modalCloseDelay,
     onCloseStart,
     disableEsc = DEFAULT_MODAL_REF.isEscDisabled,
     unlockBodyScroll = false,
@@ -105,7 +105,7 @@ export const ModalProvider: FC<ModalProviderProps> = ({
       ...DEFAULT_MODAL_REF,
       isEscDisabled: disableEsc,
       onCloseStart,
-      closeDelay,
+      modalCloseDelay,
     };
 
     /**
@@ -137,10 +137,10 @@ export const ModalProvider: FC<ModalProviderProps> = ({
 
     modalRef.current.closeTimer = setTimeout(() => {
       dialog.current?.close();
-    }, modalRef.current.closeDelay());
+    }, modalRef.current.modalCloseDelay());
   };
 
-  const onClose: ReactEventHandler<HTMLDialogElement> = () => {
+  const onModalClose: ReactEventHandler<HTMLDialogElement> = () => {
     document.body.classList.remove('use-modal-scroll-lock');
     if (typeof setModalOpen.current !== 'undefined') {
       setModalOpen.current(false);
@@ -186,7 +186,7 @@ export const ModalProvider: FC<ModalProviderProps> = ({
       <dialog
         className={`use-modal-container ${className}`}
         ref={dialog}
-        onClose={onClose}
+        onClose={onModalClose}
         key={modalKey}
         {...attributes}
       ></dialog>

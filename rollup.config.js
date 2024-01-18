@@ -4,7 +4,6 @@ import terser from '@rollup/plugin-terser';
 import typescript from '@rollup/plugin-typescript';
 import autoprefixer from 'autoprefixer';
 import cssnanoPlugin from 'cssnano';
-import copy from 'rollup-plugin-copy';
 import dts from 'rollup-plugin-dts';
 import postcss from 'rollup-plugin-postcss';
 import babelSrc from './.babelrc.json' assert { type: 'json' };
@@ -56,11 +55,6 @@ export default [
   {
     input: 'dist/types/index.d.ts',
     output: [{ file: 'dist/index.d.ts', format: 'esm' }],
-    plugins: [
-      dts.default(),
-      copy({
-        targets: [{ src: 'LICENSE', dest: 'dist' }],
-      }),
-    ],
+    plugins: [dts.default()],
   },
 ];

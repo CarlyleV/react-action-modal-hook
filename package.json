@@ -1,9 +1,20 @@
 {
   "name": "react-action-modal-hook",
-  "version": "1.0.0-beta",
+  "description": "A React hook for creating modal dialogs with ease.",
+  "version": "1.0.0",
   "author": "Han Huang",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CarlyleV/react-action-modal-hook.git"
+  },
+  "homepage": "https://github.com/CarlyleV/react-action-modal-hook",
+  "bugs": "https://github.com/CarlyleV/react-action-modal-hook/issues",
+  "directories": {
+    "example": "src/examples"
+  },
   "main": "dist/cjs/index.js",
   "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "tags": [
     "react",
     "hook",
@@ -58,7 +69,6 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rollup": "^4.9.4",
-    "rollup-plugin-copy": "^3.5.0",
     "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-dts": "^6.1.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
@@ -70,11 +80,18 @@
     "react": "^16 || ^17 || ^18",
     "react-dom": "^16 || ^17 || ^18"
   },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./index.d.ts": "./dist/index.d.ts",
+    "./style.css": "./dist/style.css"
+  },
   "files": [
     "package.json",
     "README.md",
     "LICENSE",
-    "types",
     "dist"
   ],
   "volta": {
