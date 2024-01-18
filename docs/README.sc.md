@@ -20,7 +20,7 @@ export const BlurModalTrigger: FC<Props> = ({
 }) => {
   const [isClosing, setIsClosing] = useState < boolean > false;
 
-  const onClose: UseModalEventHandler = () => {
+  const onModalClose: OnModalClose = () => {
     // Blur Modal Start Closing
     setIsClosing(true);
     return () => {
@@ -29,13 +29,13 @@ export const BlurModalTrigger: FC<Props> = ({
     };
   };
 
-  const closeDelay = () => {
+  const modalCloseDelay = () => {
     return 200;
   };
 
   const [Modal, openModal, closeModal] = useModal(BlurModal, {
-    closeDelay,
-    onClose,
+    modalCloseDelay,
+    onModalClose,
     disableEsc,
     unlockBodyScroll,
   });
@@ -69,27 +69,27 @@ yarn add react-action-modal-hook
 [ModalComponent, openModal, closeModal, isModalOpen, dialogElement] = useModal<ModalTemplateProps>(
   ModalTemplate,
   {
-    closeDelay,
-    onClose,
+    modalCloseDelay,
+    onModalClose,
     disableEsc,
     unlockBodyScroll,
   },
 );
 ```
 
-|                      | Type                                      | Description                                                                                              | Required |
-| :------------------- | :---------------------------------------- | :------------------------------------------------------------------------------------------------------- | :------- |
-| `ModalComponent`     | React.FC                                  | 已注册的 Modal Component                                                                                 |          |
-| `openModal`          | () => void                                | 打开 Modal                                                                                               |          |
-| `closeModal`         | () => void                                | 关闭 Modal                                                                                               |
-| `isModalOpen`        | boolean                                   | Modal 的开关状态                                                                                         |          |
-| `dialogElement`      | HTMLDialogElement                         | 包裹 Modal 的 Dialog 要素                                                                                |          |
-| `ModalTemplateProps` | object type                               | 注册 Modal 模版的 Props                                                                                  |          |
-| `ModalTemplate`      | React.FC                                  | 注册 Modal 模版                                                                                          | ⚪︎      |
-| `closeDelay`         | () => number                              | 从`closeModal`开始执行到关闭 Modal 的延迟毫秒数（ms） <br/>默认值：`() => 0` <br/>※用于动画用            |          |
-| `onClose`            | (HTMLDialogElement) => void \| () => void | 关闭 Modal 时触发。当执行 `closeModal` 后，将执行 `onClose`。`onClose` 返回的函数将在 Modal 关闭后执行。 |          |
-| `disableEsc`         | boolean                                   | 防止使用 Esc 键关闭 Modal。默认值为 false。                                                              |          |
-| `unlockBodyScroll`   | boolean                                   | Modal 打开时，不锁定 Body 的滚动。默认值为 false。                                                       |          |
+|                      | Type                                      | Description                                                                                                        | Required |
+| :------------------- | :---------------------------------------- | :----------------------------------------------------------------------------------------------------------------- | :------- |
+| `ModalComponent`     | React.FC                                  | 已注册的 Modal Component                                                                                           |          |
+| `openModal`          | () => void                                | 打开 Modal                                                                                                         |          |
+| `closeModal`         | () => void                                | 关闭 Modal                                                                                                         |
+| `isModalOpen`        | boolean                                   | Modal 的开关状态                                                                                                   |          |
+| `dialogElement`      | HTMLDialogElement                         | 包裹 Modal 的 Dialog 要素                                                                                          |          |
+| `ModalTemplateProps` | object type                               | 注册 Modal 模版的 Props                                                                                            |          |
+| `ModalTemplate`      | React.FC                                  | 注册 Modal 模版                                                                                                    | ⚪︎      |
+| `modalCloseDelay`    | () => number                              | 从`closeModal`开始执行到关闭 Modal 的延迟毫秒数（ms） <br/>默认值：`() => 0` <br/>※用于动画用                      |          |
+| `onModalClose`       | (HTMLDialogElement) => void \| () => void | 关闭 Modal 时触发。当执行 `closeModal` 后，将执行 `onModalClose`。`onModalClose` 返回的函数将在 Modal 关闭后执行。 |          |
+| `disableEsc`         | boolean                                   | 防止使用 Esc 键关闭 Modal。默认值为 false。                                                                        |          |
+| `unlockBodyScroll`   | boolean                                   | Modal 打开时，不锁定 Body 的滚动。默认值为 false。                                                                 |          |
 
 ## Styles
 
@@ -173,7 +173,7 @@ export const BlurModalTrigger: FC<Props> = ({
 }) => {
   const [isClosing, setIsClosing] = useState < boolean > false;
 
-  const onClose: UseModalEventHandler = () => {
+  const onModalClose: OnModalClose = () => {
     // Blur Modal Start Closing
     setIsClosing(true);
     return () => {
@@ -182,13 +182,13 @@ export const BlurModalTrigger: FC<Props> = ({
     };
   };
 
-  const closeDelay = () => {
+  const modalCloseDelay = () => {
     return 200;
   };
 
   const [Modal, openModal, closeModal] = useModal(BlurModal, {
-    closeDelay,
-    onClose,
+    modalCloseDelay,
+    onModalClose,
     disableEsc,
     unlockBodyScroll,
   });

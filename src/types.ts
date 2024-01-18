@@ -1,18 +1,16 @@
-import { DialogHTMLAttributes, HTMLAttributes, ReactNode } from 'react';
+import { DialogHTMLAttributes } from 'react';
 
 export type ModalProviderConfig = {
   modalKey?: string;
 } & Omit<DialogHTMLAttributes<HTMLDialogElement>, 'onKeyDown'>;
 
-export type CloseDelay = () => number;
+export type ModalCloseDelay = () => number;
 
-export type UseModalEventHandler = (
-  e: HTMLDialogElement,
-) => (() => void) | void;
+type OnModalCloseStart<T extends Function> = (e: HTMLDialogElement) => T | void;
 
-export type ModalProps = {
-  children: ReactNode;
-} & HTMLAttributes<HTMLDivElement>;
+type OnModalCloseEnd = () => void;
+
+export type OnModalClose = OnModalCloseStart<OnModalCloseEnd>;
 
 export type OpenModal = () => void;
 

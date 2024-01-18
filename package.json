@@ -1,7 +1,7 @@
 {
   "name": "react-action-modal-hook",
   "description": "A React hook for creating modal dialogs with ease.",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.0",
   "author": "Han Huang",
   "repository": {
     "type": "git",
@@ -12,9 +12,9 @@
   "directories": {
     "example": "src/examples"
   },
-  "main": "cjs/index.js",
-  "module": "index.js",
-  "types": "index.d.ts",
+  "main": "dist/cjs/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "tags": [
     "react",
     "hook",
@@ -80,11 +80,19 @@
     "react": "^16 || ^17 || ^18",
     "react-dom": "^16 || ^17 || ^18"
   },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./index.d.ts": "./dist/index.d.ts",
+    "./style.css": "./dist/style.css"
+  },
   "files": [
     "package.json",
     "README.md",
     "LICENSE",
-    "dist/"
+    "dist"
   ],
   "volta": {
     "node": "20.10.0",
