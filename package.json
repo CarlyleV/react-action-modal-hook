@@ -1,7 +1,7 @@
 {
   "name": "react-action-modal-hook",
   "description": "A React hook for creating modal dialogs with ease.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Han Huang",
   "repository": {
     "type": "git",
@@ -39,7 +39,6 @@
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "^15.2.3",
-    "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.5",
     "@storybook/addon-essentials": "^7.6.7",
     "@storybook/addon-interactions": "^7.6.7",
@@ -60,7 +59,6 @@
     "@typescript-eslint/parser": "^6.18.0",
     "autoprefixer": "^10.4.16",
     "clsx": "^2.1.0",
-    "cssnano": "^6.0.3",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-react": "^7.33.2",
