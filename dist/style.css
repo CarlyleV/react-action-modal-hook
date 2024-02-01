@@ -1,1 +1,22 @@
-.use-modal-container{background:transparent;border:0;max-height:none;max-width:none;overflow:auto;padding:0;-webkit-tap-highlight-color:transparent}.use-modal-container::backdrop{background:transparent}.use-modal-container:focus-visible{outline:none}.use-modal-scroll-lock{overflow:hidden!important;overscroll-behavior:none!important}
+.use-modal-container {
+  max-width: none;
+  max-height: none;
+  padding: 0;
+  overflow: auto;
+  background: transparent;
+  border: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.use-modal-container::backdrop {
+  background: transparent;
+}
+
+.use-modal-container:focus-visible {
+  outline: none;
+}
+
+.use-modal-scroll-lock {
+  overflow: hidden !important;
+  overscroll-behavior: none !important;
+}

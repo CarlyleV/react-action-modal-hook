@@ -1,1 +1,217 @@
-"use strict";var e=require("react"),r=require("react-dom"),o=function(e,r){return o=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(e,r){e.__proto__=r}||function(e,r){for(var o in r)Object.prototype.hasOwnProperty.call(r,o)&&(e[o]=r[o])},o(e,r)};var t=function(){return t=Object.assign||function(e){for(var r,o=1,t=arguments.length;o<t;o++)for(var n in r=arguments[o])Object.prototype.hasOwnProperty.call(r,n)&&(e[n]=r[n]);return e},t.apply(this,arguments)};"function"==typeof SuppressedError&&SuppressedError;var n=function(e){function r(){return e.call(this,"useModal must be used within a ModalProvider")||this}return function(e,r){if("function"!=typeof r&&null!==r)throw new TypeError("Class extends value "+String(r)+" is not a constructor or null");function t(){this.constructor=e}o(e,r),e.prototype=null===r?Object.create(r):(t.prototype=r.prototype,new t)}(r,e),r}(Error),l={isEscDisabled:!1,closeTimer:void 0,modalCloseDelay:function(){return 0},isClosing:!1,onCloseStart:void 0,onCloseEnd:void 0},c=e.createContext(null);exports.ModalError=n,exports.ModalProvider=function(r){var o=r.modalKey,n=void 0===o?"root":o,u=r.children,s=r.className,a=void 0===s?"":s,i=function(e,r){var o={};for(var t in e)Object.prototype.hasOwnProperty.call(e,t)&&r.indexOf(t)<0&&(o[t]=e[t]);if(null!=e&&"function"==typeof Object.getOwnPropertySymbols){var n=0;for(t=Object.getOwnPropertySymbols(e);n<t.length;n++)r.indexOf(t[n])<0&&Object.prototype.propertyIsEnumerable.call(e,t[n])&&(o[t[n]]=e[t[n]])}return o}(r,["modalKey","children","className"]),d=e.useRef(null),f=e.useRef(l),v=e.useRef(void 0),p=e.useCallback((function(e){e.preventDefault(),f.current.isEscDisabled||"escape"!==e.key.toLocaleLowerCase()||m()}),[]),m=function(){f.current.isClosing||null===d.current||(f.current.isClosing=!0,clearTimeout(f.current.closeTimer),f.current.onCloseEnd=void 0!==f.current.onCloseStart?f.current.onCloseStart(d.current):void 0,f.current.closeTimer=setTimeout((function(){var e;null===(e=d.current)||void 0===e||e.close()}),f.current.modalCloseDelay()))};e.useEffect((function(){return function(){var e=d.current;null==e||e.removeEventListener("keydown",p),f.current.closeTimer&&clearTimeout(f.current.closeTimer)}}),[p]);return e.createElement(c.Provider,{value:{getModal:function(){return d.current},open:function(e,r,o,n,c){var u,s;void 0===r&&(r=l.modalCloseDelay),void 0===n&&(n=l.isEscDisabled),void 0===c&&(c=!1),f.current=t(t({},l),{isEscDisabled:n,onCloseStart:o,modalCloseDelay:r}),null===(u=d.current)||void 0===u||u.addEventListener("keydown",p,!0),v.current=e,v.current(!0),c||document.body.classList.add("use-modal-scroll-lock"),null===(s=d.current)||void 0===s||s.showModal()},close:m,modalKey:n}},u,e.createElement("dialog",t({className:"use-modal-container ".concat(a),ref:d,onClose:function(){var e;document.body.classList.remove("use-modal-scroll-lock"),void 0!==v.current&&(v.current(!1),v.current=void 0),null===(e=d.current)||void 0===e||e.removeEventListener("keydown",p),void 0!==f.current.onCloseEnd&&f.current.onCloseEnd(),f.current=l},key:n},i)))},exports.useModal=function(o,l){var u=void 0===l?{}:l,s=u.unlockBodyScroll,a=u.modalCloseDelay,i=u.onModalClose,d=u.disableEsc,f=e.useContext(c);if(null===f)throw new n;var v=f.getModal,p=f.open,m=f.close,y=f.modalKey,C=e.useState(!1),E=C[0],b=C[1];return[e.useCallback((function(n){return e.createElement(e.Fragment,null,E&&r.createPortal(e.createElement(o,t({},n)),v(),"modal-".concat(y)))}),[o,v,E,y]),function(){p(b,a,i,d,s)},m,E,v()]};
+'use strict';
+
+var React = require('react');
+var reactDom = require('react-dom');
+
+/******************************************************************************
+Copyright (c) Microsoft Corporation.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
+***************************************************************************** */
+/* global Reflect, Promise, SuppressedError, Symbol */
+
+var _extendStatics = function extendStatics(d, b) {
+  _extendStatics = Object.setPrototypeOf || {
+    __proto__: []
+  } instanceof Array && function (d, b) {
+    d.__proto__ = b;
+  } || function (d, b) {
+    for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p];
+  };
+  return _extendStatics(d, b);
+};
+function __extends(d, b) {
+  if (typeof b !== "function" && b !== null) throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+  _extendStatics(d, b);
+  function __() {
+    this.constructor = d;
+  }
+  d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+}
+var _assign = function __assign() {
+  _assign = Object.assign || function __assign(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+      for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+    }
+    return t;
+  };
+  return _assign.apply(this, arguments);
+};
+function __rest(s, e) {
+  var t = {};
+  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
+  if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
+  }
+  return t;
+}
+typeof SuppressedError === "function" ? SuppressedError : function (error, suppressed, message) {
+  var e = new Error(message);
+  return e.name = "SuppressedError", e.error = error, e.suppressed = suppressed, e;
+};
+var ModalError = /** @class */function (_super) {
+  __extends(ModalError, _super);
+  function ModalError() {
+    return _super.call(this, 'useModal must be used within a ModalProvider') || this;
+  }
+  return ModalError;
+}(Error);
+var DEFAULT_MODAL_REF = {
+  isEscDisabled: false,
+  closeTimer: undefined,
+  modalCloseDelay: function modalCloseDelay() {
+    return 0;
+  },
+  isClosing: false,
+  onCloseStart: undefined,
+  onCloseEnd: undefined
+};
+var ModalContext = React.createContext(null);
+/**
+ * @function ModalProvider
+ * @param {ModalProviderProps} props - Properties for the ModalProvider component
+ * @returns {React.ReactNode} - Rendering result of the ModalProvider component
+ */
+var ModalProvider = function ModalProvider(_a) {
+  var _b = _a.modalKey,
+    modalKey = _b === void 0 ? 'root' : _b,
+    children = _a.children,
+    _c = _a.className,
+    className = _c === void 0 ? '' : _c,
+    attributes = __rest(_a, ["modalKey", "children", "className"]);
+  var dialog = React.useRef(null);
+  var modalRef = React.useRef(DEFAULT_MODAL_REF);
+  var setModalOpen = React.useRef(undefined);
+  var onKeyDown = React.useCallback(function (e) {
+    e.preventDefault();
+    if (!modalRef.current.isEscDisabled && e.key.toLocaleLowerCase() === 'escape') {
+      close();
+    }
+  }, []);
+  var open = function open(dispatch, modalCloseDelay, onCloseStart, disableEsc, unlockBodyScroll) {
+    var _a, _b;
+    if (modalCloseDelay === void 0) {
+      modalCloseDelay = DEFAULT_MODAL_REF.modalCloseDelay;
+    }
+    if (disableEsc === void 0) {
+      disableEsc = DEFAULT_MODAL_REF.isEscDisabled;
+    }
+    if (unlockBodyScroll === void 0) {
+      unlockBodyScroll = false;
+    }
+    modalRef.current = _assign(_assign({}, DEFAULT_MODAL_REF), {
+      isEscDisabled: disableEsc,
+      onCloseStart: onCloseStart,
+      modalCloseDelay: modalCloseDelay
+    });
+    /**
+     * The React.KeyboardEventHandler<HTMLDialogElement>(onKeyDown) doesn't work on Safari v17.2.1 (Mac OS 14.2.1)
+     */
+    (_a = dialog.current) === null || _a === void 0 ? void 0 : _a.addEventListener('keydown', onKeyDown, true);
+    setModalOpen.current = dispatch;
+    setModalOpen.current(true);
+    if (!unlockBodyScroll) {
+      document.body.classList.add('use-modal-scroll-lock');
+    }
+    (_b = dialog.current) === null || _b === void 0 ? void 0 : _b.showModal();
+  };
+  var close = function close() {
+    if (modalRef.current.isClosing || dialog.current === null) return;
+    modalRef.current.isClosing = true;
+    clearTimeout(modalRef.current.closeTimer);
+    modalRef.current.onCloseEnd = typeof modalRef.current.onCloseStart !== 'undefined' ? modalRef.current.onCloseStart(dialog.current) : undefined;
+    modalRef.current.closeTimer = setTimeout(function () {
+      var _a;
+      (_a = dialog.current) === null || _a === void 0 ? void 0 : _a.close();
+    }, modalRef.current.modalCloseDelay());
+  };
+  var onModalClose = function onModalClose() {
+    var _a;
+    document.body.classList.remove('use-modal-scroll-lock');
+    if (typeof setModalOpen.current !== 'undefined') {
+      setModalOpen.current(false);
+      setModalOpen.current = undefined;
+    }
+    (_a = dialog.current) === null || _a === void 0 ? void 0 : _a.removeEventListener('keydown', onKeyDown);
+    if (typeof modalRef.current.onCloseEnd !== 'undefined') {
+      modalRef.current.onCloseEnd();
+    }
+    modalRef.current = DEFAULT_MODAL_REF;
+  };
+  React.useEffect(function () {
+    return function () {
+      var dialogElement = dialog.current;
+      dialogElement === null || dialogElement === void 0 ? void 0 : dialogElement.removeEventListener('keydown', onKeyDown);
+      if (modalRef.current.closeTimer) {
+        clearTimeout(modalRef.current.closeTimer);
+      }
+    };
+  }, [onKeyDown]);
+  var getModal = function getModal() {
+    return dialog.current;
+  };
+  return React.createElement(ModalContext.Provider, {
+    value: {
+      getModal: getModal,
+      open: open,
+      close: close,
+      modalKey: modalKey
+    }
+  }, children, React.createElement("dialog", _assign({
+    className: "use-modal-container ".concat(className),
+    ref: dialog,
+    onClose: onModalClose,
+    key: modalKey
+  }, attributes)));
+};
+
+/**
+ * Custom hook for managing modal state and operations using React Hooks.
+ *
+ * @template T - Type of the template component's props.
+ * @param {FC<T>} Template - The component that renders the content of the modal.
+ * @param {Object} options - Options for configuring the modal behavior.
+ * @param {boolean} [options.unlockBodyScroll] - Whether to lock scrolling when the modal is open.
+ * @param {ModalCloseDelay} [options.modalCloseDelay] - Delay duration(ms) before closing the modal.
+ * @param {OnModalClose} [options.onModalClose] - Callback function triggered when the modal is closed.
+ * @param {boolean} [options.disableEsc] - Whether to disable closing the modal with the ESC key.
+ * @returns {[FC<T>, OpenModal, CloseModal, boolean, HTMLDialogElement | null]} - Tuple containing the modal component, functions to open/close the modal, the modal's open state, and the modal's dialog element.
+ */
+var useModal = function useModal(Template, _a) {
+  var _b = _a === void 0 ? {} : _a,
+    unlockBodyScroll = _b.unlockBodyScroll,
+    modalCloseDelay = _b.modalCloseDelay,
+    onModalClose = _b.onModalClose,
+    disableEsc = _b.disableEsc;
+  var context = React.useContext(ModalContext);
+  if (context === null) {
+    throw new ModalError();
+  }
+  var getModal = context.getModal,
+    open = context.open,
+    closeModal = context.close,
+    modalKey = context.modalKey;
+  var _c = React.useState(false),
+    isModalOpen = _c[0],
+    setIsModalOpen = _c[1];
+  var openModal = function openModal() {
+    open(setIsModalOpen, modalCloseDelay, onModalClose, disableEsc, unlockBodyScroll);
+  };
+  var Modal = React.useCallback(function (props) {
+    return React.createElement(React.Fragment, null, isModalOpen && reactDom.createPortal(React.createElement(Template, _assign({}, props)), getModal(), "modal-".concat(modalKey)));
+  }, [Template, getModal, isModalOpen, modalKey]);
+  return [Modal, openModal, closeModal, isModalOpen, getModal()];
+};
+exports.ModalError = ModalError;
+exports.ModalProvider = ModalProvider;
+exports.useModal = useModal;
