@@ -1,9 +1,7 @@
 import { getBabelOutputPlugin } from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
-import terser from '@rollup/plugin-terser';
 import typescript from '@rollup/plugin-typescript';
 import autoprefixer from 'autoprefixer';
-import cssnanoPlugin from 'cssnano';
 import dts from 'rollup-plugin-dts';
 import postcss from 'rollup-plugin-postcss';
 import babelSrc from './.babelrc.json' assert { type: 'json' };
@@ -26,7 +24,6 @@ export default [
     ],
     plugins: [
       getBabelOutputPlugin(babelSrc),
-      terser(),
       commonjs({
         include: ['node_modules/**'],
       }),
@@ -48,7 +45,7 @@ export default [
     plugins: [
       postcss({
         extract: true,
-        plugins: [autoprefixer(), cssnanoPlugin()],
+        plugins: [autoprefixer()],
       }),
     ],
   },
